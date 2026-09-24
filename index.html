@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ติดตั้งเมืองปทุมธานี | ESP32-CYD</title>
+  <meta name="theme-color" content="#082432">
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    :root{color-scheme:dark;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;color:#e9f8fc;background:radial-gradient(circle at 84% 0%,#156071 0,#0a2e3d 28%,#081c29 75%)}
+    main{max-width:800px;margin:auto;padding:32px 20px 80px}
+    .eyebrow{color:#5de4de;letter-spacing:.12em;font-size:13px;font-weight:700}
+    h1{font-size:clamp(30px,6vw,50px);line-height:1.15;letter-spacing:-.03em;margin:10px 0 16px}
+    h2{font-size:22px;margin:0 0 10px;color:#a8f4f0}
+    p{margin:10px 0;color:#d0e7ec}
+    .lead{font-size:18px;max-width:660px}
+    .panel{margin-top:25px;background:#153546;border:1px solid #387181;border-radius:20px;padding:26px;box-shadow:0 18px 45px #04141b70}
+    .tag{display:inline-block;border:1px solid #4ebbad;color:#b4fff0;background:#1d524f;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:650}
+    .install{margin-top:20px;padding:22px;border-radius:14px;background:#0b2938}
+    .hint{color:#ffe19a}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:16px}
+    .step{border:1px solid #316274;border-radius:13px;padding:17px;background:#123244}
+    .step strong{display:block;color:#80efe1;margin-bottom:5px}
+    a{color:#88f3ed;text-underline-offset:3px}
+    a.button{display:inline-block;background:#167b83;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-weight:650}
+    code{background:#0d2a38;border-radius:5px;padding:2px 5px;color:#d5ffbd}
+    footer{font-size:13px;color:#b8d5dc;margin-top:26px}
+    esp-web-install-button{--esp-tools-button-color:#15a5a0;--esp-tools-button-text-color:#fff;--esp-tools-button-border-radius:10px}
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">เมืองปทุมธานี · ESP32-CYD</div>
+  <h1>ติดตั้งโปรแกรมลงบอร์ด<br>ผ่านสาย USB</h1>
+  <p class="lead">เสียบบอร์ดเข้าคอม เปิดหน้านี้ด้วย Chrome หรือ Edge แล้วกดติดตั้ง ไม่ต้องติดตั้ง Arduino IDE หรือรับซอร์สโค้ด</p>
+  <span class="tag">รองรับ ESP32-CYD 2.8 นิ้ว รุ่นจอ ST7789 + XPT2046 เท่านั้น</span>
+
+  <section class="panel" aria-labelledby="flash-title">
+    <h2 id="flash-title">เริ่มติดตั้ง</h2>
+    <p>ใช้สาย USB ที่ส่งข้อมูลได้ เลือกพอร์ตของบอร์ด แล้วรอจนติดตั้งเสร็จ การติดตั้งครั้งแรกอาจลบค่าที่เคยบันทึกในบอร์ด</p>
+    <div class="install" id="install-area" hidden>
+      <esp-web-install-button manifest="./manifest.json">
+        <span slot="unsupported">เบราว์เซอร์นี้เปิดพอร์ต USB ไม่ได้ กรุณาใช้ Chrome หรือ Edge บนคอม</span>
+        <span slot="not-allowed">ต้องเปิดหน้านี้ผ่าน HTTPS เพื่อเชื่อมต่อ USB</span>
+      </esp-web-install-button>
+    </div>
+    <p class="hint" id="pending">กำลังตรวจไฟล์โปรแกรมสำหรับติดตั้ง…</p>
+  </section>
+
+  <section class="panel" aria-labelledby="wifi-title">
+    <h2 id="wifi-title">หลังติดตั้ง: ตั้งค่า Wi-Fi ให้จอ</h2>
+    <div class="steps">
+      <div class="step"><strong>1 · ดูหน้าจอบอร์ด</strong>บอร์ดจะแสดงชื่อ Wi-Fi <code>PATHUM-XXXXXXXX</code> พร้อมรหัสเฉพาะบอร์ด</div>
+      <div class="step"><strong>2 · ใช้มือถือเชื่อมต่อ</strong>เชื่อม Wi-Fi ที่บอร์ดแสดง แล้วเปิด <code>http://192.168.4.1</code></div>
+      <div class="step"><strong>3 · กดบันทึก</strong>กรอก Wi-Fi บ้านแบบ 2.4 GHz และใส่ลิงก์เว็บกล้องที่ระบุด้านล่าง</div>
+    </div>
+    <p>ลิงก์เว็บกล้องที่ต้องกรอกบนมือถือ:<br><code>https://saravuthpongsalee.github.io/pathum-water</code></p>
+  </section>
+
+  <section class="panel" aria-labelledby="camera-title">
+    <h2 id="camera-title">ดูภาพกล้องเดิม</h2>
+    <p>เว็บกล้องเดิมยังอยู่ที่เดิม ภาพเป็นภาพนิ่งตามรอบ และแสดงเวลาของภาพก่อนนำไปใช้</p>
+    <p><a class="button" href="https://saravuthpongsalee.github.io/pathum-water/">เปิดเว็บกล้องเมืองปทุมธานี</a></p>
+  </section>
+  <footer>เฟิร์มแวร์ต้องผ่านการทดสอบกับบอร์ดรุ่นเดียวกันก่อนเผยแพร่ หากไม่พบพอร์ต COM ให้ตรวจสาย USB หรือไดรเวอร์ USB-Serial ของบอร์ด</footer>
+</main>
+<script>
+  fetch('./firmware/merged.bin',{method:'HEAD',cache:'no-store'}).then(response=>{
+    const size=Number(response.headers.get('content-length'));
+    if(!response.ok || !Number.isFinite(size) || size<=65536)throw new Error('ยังไม่มีไฟล์โปรแกรมที่เผยแพร่');
+    document.getElementById('install-area').hidden=false;
+    document.getElementById('pending').hidden=true;
+  }).catch(()=>{
+    document.getElementById('pending').textContent='ไฟล์โปรแกรมยังอยู่ระหว่างทดสอบบนบอร์ดจริง ปุ่มติดตั้งจะปรากฏเมื่อเจ้าของเผยแพร่แล้ว';
+  });
+</script>
+</body>
+</html>
